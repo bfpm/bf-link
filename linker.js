@@ -33,7 +33,7 @@ function load(filePath, libPath) {
       dir: fileDir,
       name: result[1],
       ext: DEFAULT_EXT
-    }));
+    }), libPath);
     // Replace the {{}} import with the inlined brainf*ck code
     code = code.slice(0, result.index) + resolvedDependency + code.slice(result.index + result[0].length);
   }
