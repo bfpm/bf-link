@@ -3,22 +3,48 @@
 const fs = require('fs');
 const path = require('path');
 
+const commandLineArgs = require('command-line-args');
+const commandLineUsage = require('command-line-usage');
+
 // Import our module
 const linker = require('../linker.js');
 
 // Constants
 const DEFAULT_CONFIG = {
-  main: 'main.b',
+  in: 'main.b',
   out: 'out.b',
   lib: 'lib'
 };
+const OPTIONS = [
+  { name: 'help', alias: 'h', type: Boolean, description: 'Print this usage guide'},
+  { name: 'in', alias: 'i', type: String, typeLabel: '[underline]{file}', defaultValue: DEFAULT_CONFIG.in, description: 'The file to link other files into', defaultOption: true },
+  { name: 'out', alias: 'o', type: String, typeLabel: '[underline]{file}', defaultValue: DEFAULT_CONFIG.out, description: 'The file to output the linked brainf*ck code into'},
+  { name: 'lib', alias: 'l', type: String, typeLabel: '[underline]{directory}', defaultValue: DEFAULT_CONFIG.lib, description: 'The directory to take pre-linked libraries from' }
+];
+const HELP = commandLineUsage([
+  {
+    header: 'Brainf*ck Linker',
+    content: 'Links all the dependencies needed by a brainf*ck file'
+  },
+  {
+    header: 'Options',
+    optionList: OPTIONS
+  }
+]);
 
-// Get default parameters
-const main = path.resolve(process.argv[2] || DEFAULT_CONFIG.main);
-const out = path.resolve(process.argv[3] || DEFAULT_CONFIG.out);
-const lib = path.resolve(process.argv[4] || DEFAULT_CONFIG.lib);
+// Firstly, let's get the command line args
+const options = commandLineArgs(OPTIONS);
 
-const inlined = linker.link(main, out, lib);
-fs.writeFileSync(out, inlined, 'utf8');
-console.log(inlined + '\n\n');
-console.log('Written minified and inlined code to: ' + out);
+if(options.help) {
+  console.log(HELP);
+} else {
+  // Get default parameters
+  const inFile = path.resolve(options.in);
+  const outFile = path.resolve(options.out);
+  const lib = path.resolve(options.lib);
+
+  const linked = linker.link(inFile, lib);
+  fs.writeFileSync(outFile, linked, 'utf8');
+  console.log(linked + '\n\n');
+  console.log('Written minified and inlined code to: ' + outFile);
+}

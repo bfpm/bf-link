@@ -6,6 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "bin": {
+    "bf-link": "bin/bf-link"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/harryshipton/bf-link.git"
@@ -22,6 +25,8 @@
   },
   "homepage": "https://github.com/harryshipton/bf-link#readme",
   "dependencies": {
-    "brnfckr": "^0.1.1"
+    "brnfckr": "^0.1.1",
+    "command-line-args": "^4.0.2",
+    "command-line-usage": "^4.0.0"
   }
 }

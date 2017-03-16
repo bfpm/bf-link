@@ -56,11 +56,11 @@ function load(filePath, libPath) {
   return code;
 }
 
-module.exports.link = function(main, out, lib) {
+module.exports.link = function(inFile, lib) {
   // Inline file
   let inline;
   try {
-    inline = load(main, lib);
+    inline = load(inFile, lib);
   } catch(e) {
     console.error(e);
     return;
