@@ -1,0 +1,24 @@
+#!/usr/bin/env node
+
+const fs = require('fs');
+const path = require('path');
+
+// Import our module
+const linker = require('../linker.js');
+
+// Constants
+const DEFAULT_CONFIG = {
+  main: 'main.b',
+  out: 'out.b',
+  lib: 'lib'
+};
+
+// Get default parameters
+const main = path.resolve(process.argv[2] || DEFAULT_CONFIG.main);
+const out = path.resolve(process.argv[3] || DEFAULT_CONFIG.out);
+const lib = path.resolve(process.argv[4] || DEFAULT_CONFIG.lib);
+
+const inlined = linker.link(main, out, lib);
+fs.writeFileSync(out, inlined, 'utf8');
+console.log(inlined + '\n\n');
+console.log('Written minified and inlined code to: ' + out);
