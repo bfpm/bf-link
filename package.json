@@ -1,6 +1,6 @@
 {
   "name": "bf-link",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A package for making brainf*ck files inline, through two methods (project packages and project modules)",
   "main": "linker.js",
   "scripts": {
