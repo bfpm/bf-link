@@ -1,0 +1,24 @@
+{
+  "name": "bf-link",
+  "version": "0.0.1",
+  "description": "A package for making brainf*ck files inline, through two methods (project packages and project modules)",
+  "main": "linker.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harryshipton/bf-link.git"
+  },
+  "keywords": [
+    "brainf*ck",
+    "linker",
+    "inliner"
+  ],
+  "author": "Harry Shipton",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/harryshipton/bf-link/issues"
+  },
+  "homepage": "https://github.com/harryshipton/bf-link#readme"
+}
