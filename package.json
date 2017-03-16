@@ -20,5 +20,9 @@
   "bugs": {
     "url": "https://github.com/harryshipton/bf-link/issues"
   },
-  "homepage": "https://github.com/harryshipton/bf-link#readme"
+  "homepage": "https://github.com/harryshipton/bf-link#readme",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "brnfckr": "^0.1.1"
+  }
 }
